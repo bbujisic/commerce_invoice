@@ -45,6 +45,9 @@ function theme_commerce_invoice_number(array $variables) {
   elseif (strpos($variables['key'], InvoiceNumber::SEQUENCE_TOKEN) !== FALSE) {
     $invoice_number = str_replace(InvoiceNumber::SEQUENCE_TOKEN, $variables['sequence'], $variables['key']);
   }
+  elseif (strpos($variables['key'], InvoiceNumber::SKIP_SEQUENCE_TOKEN) !== FALSE) {
+    $invoice_number = str_replace(InvoiceNumber::SKIP_SEQUENCE_TOKEN, '', $variables['key']);
+  }
   else {
     $invoice_number = $variables['key'];
     if (!empty($variables['sequence'])) {

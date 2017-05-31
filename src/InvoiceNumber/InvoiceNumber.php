@@ -5,6 +5,7 @@ namespace Drupal\commerce_invoice\InvoiceNumber;
 class InvoiceNumber {
 
   const SEQUENCE_TOKEN = '{SEQUENCE}';
+  const SKIP_SEQUENCE_TOKEN = '{SKIP_SEQUENCE}';
 
   protected $sequence;
   protected $key;
