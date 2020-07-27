@@ -14,6 +14,18 @@ class InvoiceController extends \EntityAPIController {
    * {@inheritdoc}
    */
   public function saveRevision($entity) {
+    /** @var Invoice $entity */
+    $revision = !empty($entity->is_new_revision) || !empty($entity->revision) || !empty($entity->is_new);
+
+    // The revision 'log' field uses the same logic as Commerce orders.
+    /** @see \CommerceOrderEntityController::save() */
+    if ($revision && !isset($entity->log)) {
+      $entity->log = '';
+    }
+    elseif (!$revision && empty($entity->log)) {
+      unset($entity->log);
+    }
+
     if (!isset($entity->revision_created)) {
       $entity->revision_created = REQUEST_TIME;
     }
